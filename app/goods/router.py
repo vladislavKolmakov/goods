@@ -10,10 +10,11 @@ router = APIRouter(
 )
 
 
-
-
 @router.post('/add_goods')
-async def add_goods():
-    return await GoodsDAO.add(name='bred', count=13, price=57)
-# async def add_goods(data: Goods):
-#     await GoodsDAO.add(data)
+async def add_goods(data: SGoods):
+    await GoodsDAO.add(name=data.name, count=data.count, price=data.price)
+
+
+@router.get('/get_goods')
+async def get_goods(name: str = None, count: int = None, price: int = None):
+    return await GoodsDAO.find_by_filter(name=name)

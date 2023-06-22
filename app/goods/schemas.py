@@ -2,10 +2,10 @@ from pydantic import BaseModel
 
 
 class SGoods(BaseModel):
-    id: int
+    # id: int
     name: str
-    cont: int
-    ptice: int
+    count: int
+    price: int
 
     class Config:
         orm_mode = True
