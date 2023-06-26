@@ -1,5 +1,5 @@
 from app.database import async_session_maker
-from sqlalchemy import insert, select
+from sqlalchemy import insert, select, update
 
 
 class BaseDAO:
@@ -12,11 +12,19 @@ class BaseDAO:
             await session.execute(query)
             await session.commit()
 
+    @classmethod
+    async def find_one_or_none(cls, **filter):
+        async with async_session_maker() as session:
+            query = select(cls.model.__table__.columns).filter_by(**filter)
+            result = await session.execute(query)
+            return result.mappings().one_or_none()
 
     @classmethod
-    async def find_by_filter(cls, **filter):
-        async with async_session_maker() as sesion:
-            query = select(cls.model.__table__.columns).filter_by(**filter)
-            result = await sesion.execute(query)
+    async def update_row(cls, id, **data):
+        async with async_session_maker() as session:
+            print('11')
+            query = update(cls.model).where(cls.model.id == id).values(**data)
+            await session.execute(query)
             print(query)
-            return result.mappings().all()
+            await session.commit()
+
