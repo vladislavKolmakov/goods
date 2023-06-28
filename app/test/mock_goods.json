@@ -1,0 +1,17 @@
+[
+    {
+        "name": "viski",
+        "count": 100,
+        "price": 1300
+      },
+      {
+        "name": "voda",
+        "count": 300,
+        "price": 48
+      },
+      {
+        "name": "burbon",
+        "count": 50,
+        "price": 899
+      }
+]
