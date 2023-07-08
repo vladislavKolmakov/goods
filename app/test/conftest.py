@@ -13,7 +13,9 @@ async def prepare_database():
     assert MODE == "TEST"
 
     async with engine.begin() as conn:
+        print('start delete tables')
         await conn.run_sync(Base.metadata.drop_all)
+        print('start create tables')
         await conn.run_sync(Base.metadata.create_all)
 
         def open_mock_json(model: str):
@@ -24,8 +26,10 @@ async def prepare_database():
 
     async with async_session_maker() as session:
         add_hotels = insert(Goods).values(goods)
+        print('start insert vals')
         await session.execute(add_hotels)
         await session.commit()
+        print('vals inserted')
 
 
 # Взято из документации к pytest-asyncio

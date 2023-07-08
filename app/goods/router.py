@@ -20,7 +20,7 @@ async def add_goods(data: SGoods):
     raise OkExeption
 
 
-@router.get('/goods')
+@router.get('/find')
 async def get_goods(name: str = None, count: int = None, price: int = None):
     return await GoodsDAO.find_by_filter(name, count, price)
 

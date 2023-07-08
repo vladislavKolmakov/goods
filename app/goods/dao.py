@@ -8,6 +8,7 @@ from sqlalchemy.orm import Query
 class GoodsDAO(BaseDAO):
     model = Goods
 
+    # TODO rewrite to universal function userg *args or **kwargs
     @classmethod
     async def find_by_filter(cls, name: str = None, count: int = None, price: int = None):
         async with async_session_maker() as session:
