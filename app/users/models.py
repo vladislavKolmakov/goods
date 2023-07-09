@@ -11,4 +11,5 @@ class User(Base):
     second_name = Column(String)
     surname = Column(String)
     hashed_password = Column(String)
-    email = String(Column)
+    email = Column(String)
+    compaign_id = Column(Integer)
