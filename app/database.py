@@ -16,7 +16,6 @@ else:
     DATABASE_URL = 'postgresql+asyncpg://postgres:123@localhost:5432/Goods'
     DATABASE_PARAMS = {}
 
-print(DATABASE_URL)
 engine = create_async_engine(DATABASE_URL, **DATABASE_PARAMS)
 
 async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
